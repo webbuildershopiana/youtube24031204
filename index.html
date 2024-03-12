@@ -71,13 +71,44 @@
 
 <style type="text/css">
 
-* { box-sizing: border-box; } body {margin: 0;}#iz9o{background-color:grey;}@keyframes fadeEffect{from{opacity:0;}to{opacity:1;}}
+* { box-sizing: border-box; } body {margin: 0;}#iz9o{background-color:grey;}@keyframes fadeEffect{from{opacity:0;}to{opacity:1;}}@media (max-width: 990px){#gjs-payment-address{height:100px;}#i22tp{position:static;}#gjs-payment-first-name{font-size:25px;}#gjs-payment-last-name{letter-spacing:0px;color:#dfd122;}}
 
 </style>
 
 </head>
 		<html>
  <head></head>
- <body id="iz9o"></body>
+ <body id="iz9o">
+  <form id="i22tp" class="mx-5 py-5">
+   <div class="row" id="ig99l">
+    <h2 class="pb-2">Payment form</h2>
+    <div class="col-md-6 col-12 mt-md-0 mt-4">
+     <label for="gjs-payment-first-name" class="form-label">First Name</label><input type="text" required id="gjs-payment-first-name" placeholder="First name" class="form-control">
+    </div>
+    <div class="col-md-6 col-12 mt-md-0 mt-4">
+     <label for="gjs-payment-last-name" class="form-label">Last Name</label><input type="text" required id="gjs-payment-last-name" placeholder="Last name" class="form-control">
+    </div>
+    <div class="col-md-6 col-12 mt-4">
+     <label for="gjs-payment-email" class="form-label">Email</label><input type="email" required id="gjs-payment-email" placeholder="Enter your email" class="form-control">
+    </div>
+    <div class="col-md-6 col-12 mt-4">
+     <label for="gjs-payment-phone-number" class="form-label">Phone Number </label><input type="number" required name="gjs-payment-phone-number" id="gjs-payment-phone-number" placeholder="Enter your phone number" class="form-control">
+    </div>
+    <div class="col-md-6 col-12 mt-4">
+     <label for="gjs-payment-address" class="form-label">Comment</label><textarea placeholder="Leave a comment here" id="gjs-payment-address" required class="form-control"></textarea>
+    </div>
+    <div class="mt-4">
+     <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+   </div>
+  </form>
+  <script>var props = {"i22tp":{"name":"","target":"_self","method":"POST","emailenable":false,"formType":"SIMPLE_FORM","websiteId":2004,"merchantCode":"youtube24031204","formInitUrl":"https://stgapi.shopiana.in/api/v1/website/form/payment/init?store=youtube24031204","paymentCaputreUrl":"https://stgapi.shopiana.in/api/v1/website/form/payment/capture?store=youtube24031204","formDataurl":"https://stgapi.shopiana.in/api/v1/wbWebsite/2004/form/formData?store=youtube24031204","websiteName":"youtube","websiteNumber":"9929667962","websiteEmail":"msharma992966@gmail.com"}};
+          var ids = Object.keys(props).map(function(id) { return '#'+id }).join(',');
+          var els = document.querySelectorAll(ids);
+          for (var i = 0, len = els.length; i < len; i++) {
+            var el = els[i];
+            (function({name:t,formDataurl:e,emailenable:n,websiteId:r,formInitUrl:o,paymentCaputreUrl:i,formType:s,price:a,websiteNumber:l,websiteName:c,websiteEmail:u,emailTemplateId:p}){console.log(a);const d=this;this.addEventListener("submit",h=>{if(h.preventDefault(),!t||!a)return void alert("Oops! We encountered a problem. Please check form name and price.");if(!(t&&r&&s&&e&&o&&i))return void alert("Oops! We encountered a problem. Please try again later.");const f=document.createElement("script");f.src="https://checkout.razorpay.com/v1/checkout.js",f.async=!0,document.head.appendChild(f);const g=new FormData(d);for(let t=0;t<d.elements.length;t++){const e=d.elements[t];e.name&&("INPUT"===e.tagName?"text"===e.type||"number"===e.type||"email"===e.type?g[e.name]=e.value:"checkbox"===e.type&&(g[e.name]=e.checked):("TEXTAREA"===e.tagName||"SELECT"===e.tagName)&&(g[e.name]=e.value))}g.append("formName",t),g.append("price",a),n&&p>0&&(g.append("emailEnabled",n),g.append("emailTemplateId",p)),fetch(e,{method:"POST",body:g}).then(t=>{if(t.ok)return t.json();throw new Error("API call failed")}).then(t=>{if("SIMPLE_FORM"===s)return d.reset(),void alert("details saved successfully");const e={websiteFormId:null==t?void 0:t.id,amount:null==t?void 0:t.price,websiteId:r,integrationKeys:{},paymentId:"",paymentModule:"wb_razorpay",paymentToken:"",paymentType:"ONLINEPAYMENT"},n=new Headers;n.append("Content-Type","application/json");const a={method:"POST",headers:n,body:JSON.stringify(e)};fetch(o,a).then(t=>{if(t.ok)return t.json();throw new Error("API call failed")}).then(e=>{var o;try{if(e){const s={},a={key:null===(o=null==e?void 0:e.metadata)||void 0===o?void 0:o.keyId,amount:null==s?void 0:s.amount,currency:"INR",name:"NJ collections",description:"",image:"",order_id:null==e?void 0:e.paymentToken,receipt:"receipt_order_"+(null==e?void 0:e.orderId),handler:o=>{const s={method:"POST",headers:n,body:JSON.stringify({amount:null==e?void 0:e.amount,integrationKeys:{},paymentId:null==o?void 0:o.razorpay_payment_id,paymentModule:"wb_razorpay",paymentToken:null==o?void 0:o.razorpay_order_id,paymentType:"ONLINEPAYMENT",websiteFormId:null==t?void 0:t.id,websiteId:r,signature:null==o?void 0:o.razorpay_signature,transactionType:"AUTHORIZECAPTURE"})};fetch(i,s).then(t=>{if(t.ok)return t.json();throw new Error("API call failed")}).then(t=>{d.reset(),alert("payment Received")}).catch(t=>{console.log(t)})},prefill:{name:c,email:u,contact:l},theme:{color:"#3399cc"}},p=new window.Razorpay(a);p.open(),p.on("payment.failed",function(t){alert(t.error.description)})}else console.log("PICKBAZAR_ERROR.SOMETHING_WENT_WRONG")}catch(s){console.log(s)}}).catch(t=>{console.error("Error during API call:",t)})}).catch(t=>{console.error("Error during API call:",t)})})}.bind(el))(props[el.id]);
+          }</script>
+ </body>
 </html>
 </html>
